@@ -4,6 +4,9 @@ class Product:
         self.price = price
         self.id = id
 
+        def __ed__(self, other):
+            return isinstance(other, Product) and other.id == self.id
+
 class Shop:
     def __init__(self, name):
         self.name = name
@@ -61,16 +64,17 @@ if __name__ == "__main__":
     shop1 = Shop("Rama")
     shop2 = Shop("Selma")
 
-    p1 = Product("Milk",80,1)
-    p2 = Product("Bread",120,2)
+    p1 = Product("Milk", 80, 1)
+    p1a = Product("Milk", 80, 1)
+    p2 = Product("Bread", 120, 2)
 
-    shop1.add_product(p1,10)
-    shop2.add_product(p2,10)
+    shop1.add_product(p1, 10)
+    shop2.add_product(p2, 10)
     print(shop1.products)
 
     c1= Cart(shop1)
     print(shop1.product_counts)
-    print(c1.add_product(p1 ,4))
+    print(c1.add_product(p1a, 4))
     print(shop1.product_counts)
     print(c1.products)
     print(c1.add_product(p1, 4))
@@ -78,3 +82,4 @@ if __name__ == "__main__":
     print(c1.products)
     c1.add_product(p2, 3)
     print(c1.get_total_price())
+    print(p1 == p1a)
